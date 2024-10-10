@@ -12,7 +12,7 @@ jest.mock('react-router-dom', () => ({
 
 describe('Card', () => {
     it('should render card with single column', () => {
-        var columns = [{key: 'columnKey', value: 'columnValue'}];
+        const columns = [{ key: 'columnKey', value: 'columnValue' }];
         render(<Card columns={columns} />);
 
         expect(screen.getByText('columnKey')).toBeInTheDocument();
@@ -20,11 +20,11 @@ describe('Card', () => {
     });
 
     it('should render card with multiple columns', () => {
-        var columns = [
+        const columns = [
             {key: 'columnKey1', value: 'columnValue1'},
             {key: 'columnKey2', value: 'columnValue2'},
             {key: 'columnKey3', value: 'columnValue3'},
-            {key: 'columnKey4', value: ''},
+            {key: 'columnKey4', value: '' },
         ];
         render(<Card columns={columns} />);
 
@@ -62,4 +62,28 @@ describe('Card', () => {
 
         expect(mockUseNavigate).not.toHaveBeenCalled();
     });
+
+    it('should render card with id', () => {
+        const columns = [{ key: 'columnKey', value: 'columnValue' }];
+        render(<Card id="test-id" columns={columns} />);
+
+        expect(screen.getByTestId('cardContainer-test-id')).toBeInTheDocument();
+    });
+
+    it('should render card without id', () => {
+        const columns = [{ key: 'columnKey', value: 'columnValue' }];
+        render(<Card columns={columns} />);
+
+        expect(screen.getByText('columnKey')).toBeInTheDocument();
+    });
+
+    it('should apply hasNavigation prop correctly', () => {
+        const columns = [{ key: 'columnKey', value: 'columnValue' }];
+        const { rerender } = render(<Card columns={columns} hasNavigation={true} />);
+        expect(screen.getByTestId('cardContainer-undefined')).toHaveStyle('cursor: pointer');
+
+        rerender(<Card columns={columns} hasNavigation={false} />);
+        expect(screen.getByTestId('cardContainer-undefined')).toHaveStyle('cursor: default');
+    });
+
 });
