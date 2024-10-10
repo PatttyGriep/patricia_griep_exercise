@@ -1,31 +1,53 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
-    height: 100px;
-    margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-`;
+    width:100%;
+    margin-bottom:20px;
 
-export const Title = styled.h1``;
+    @media (max-width: 425px) {
+        width:100%;
+    }
+    
+`;
 
 export const NavigationHeader = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
+    width: 98.6%;
+    background-color: #0078ae;
+    height:35px;
+    padding: 1rem  1.5rem 1rem 0;
+
+
+    @media (max-width: 425px) {
+        height:auto;
+    }
+    
 `;
 
 export const BackButton = styled.button`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 5px;
-    font-weight: bold;
-    font-size: 18px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
-    outline: 0;
+    margin-left:0.8rem;
 `;
+
+export const Title = styled.h1`
+    margin: 0;
+    font-size: 1.5rem;
+    color:#fff;
+    width:50%;
+    text-align: center!important;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width: 425px) {
+        width:80%;
+    }
+    
+`;
+
