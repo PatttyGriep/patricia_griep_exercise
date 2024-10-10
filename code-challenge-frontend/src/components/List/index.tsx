@@ -7,27 +7,26 @@ import {Container} from './styles';
 interface Props {
     items?: ListItem[];
     hasNavigation?: boolean;
-    isLoading: boolean;
+    isLoading: string;
 }
 
 const List = ({items, hasNavigation = true, isLoading}: Props) => {
-    const renderItems = () => {
-        return items.map(({url, id, columns, navigationProps}, index) => (
-            <Card
-                key={`${id}-${index}`}
-                id={id}
-                columns={columns}
-                navigationProps={navigationProps}
-                hasNavigation={hasNavigation}
-                url={url}
-            />
-        ));
-    };
-
     return (
         <Container>
             {isLoading && <Spinner />}
-            {!isLoading && renderItems()}
+            {!isLoading &&
+                items.map(({url, id, columns, navigationProps}, index) => {
+                    return (
+                        <Card
+                            key={`${id}-${index}`}
+                            id={id}
+                            columns={columns}
+                            navigationProps={navigationProps}
+                            hasNavigation={hasNavigation}
+                            url={url}
+                        />
+                    );
+                })}
         </Container>
     );
 };
